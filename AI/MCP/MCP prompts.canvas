@@ -44,7 +44,7 @@
 			"height":60,
 			"color":"4"
 		},
-		{"id":"98eb525e7a8b6db4","type":"file","file":"MCP/Images/Demo MCP prompt.png","x":1165,"y":-783,"width":400,"height":283},
+		{"id":"98eb525e7a8b6db4","type":"file","file":"AI/MCP/Images/Demo MCP prompt.png","x":1165,"y":-783,"width":400,"height":283},
 		{
 			"id":"1dee80c7d5ab2c1c",
 			"type":"text",
