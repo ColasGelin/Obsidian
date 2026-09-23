@@ -1,0 +1,91 @@
+{
+	"nodes":[
+		{
+			"id":"36dffc93e1caa83b",
+			"type":"text",
+			"text":"MCP CLIENT / UI",
+			"styleAttributes":{"textAlign":"center"},
+			"x":920,
+			"y":-720,
+			"width":250,
+			"height":60,
+			"color":"1"
+		},
+		{
+			"id":"b9544a1a0d473dff",
+			"type":"text",
+			"text":"MCP SERVER",
+			"styleAttributes":{
+				"shape":null,
+				"border":null,
+				"textAlign":"center"
+			},
+			"x":340,
+			"y":-720,
+			"width":250,
+			"height":60,
+			"color":"4"
+		},
+		{
+			"id":"f3e99a470d3f8287",
+			"type":"text",
+			"text":"LLM",
+			"styleAttributes":{"textAlign":"center"},
+			"x":1536,
+			"y":-720,
+			"width":250,
+			"height":60,
+			"color":"5"
+		},
+		{
+			"id":"3d2b973245350c62",
+			"type":"text",
+			"text":"USER",
+			"styleAttributes":{"textAlign":"center"},
+			"x":920,
+			"y":-340,
+			"width":250,
+			"height":60,
+			"color":"6"
+		},
+		{
+			"id":"3162a9e15499c291",
+			"type":"text",
+			"text":"GITHUB",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-240,
+			"y":-719,
+			"width":250,
+			"height":60,
+			"color":"2"
+		},
+		{
+			"id":"a1b2c3d4e5f60718",
+			"type":"text",
+			"text":"MCP client relays user query to LLM, which picks a tool. Client asks server for tool list, calls chosen tool, server executes it (here via GitHub), returns result, and final answer flows back to user.",
+			"styleAttributes":{"textAlign":"left"},
+			"x":197,
+			"y":-1000,
+			"width":1446,
+			"height":60
+		}
+	],
+	"edges":[
+		{"id":"888383ad1ca92fa5","toFloating":false,"fromNode":"36dffc93e1caa83b","fromSide":"left","toNode":"b9544a1a0d473dff","toSide":"top","label":" 1 List Tool Request"},
+		{"id":"0da07cd05721b11a","fromNode":"36dffc93e1caa83b","fromSide":"right","toNode":"f3e99a470d3f8287","toSide":"left","label":"3 Query + Tools Available"},
+		{"id":"8dc5c317a50b6dcc","fromNode":"36dffc93e1caa83b","fromSide":"left","toNode":"b9544a1a0d473dff","toSide":"bottom","label":"5 Call Tool Request"},
+		{"id":"5879adc5388d0b79","fromNode":"36dffc93e1caa83b","fromSide":"bottom","toNode":"f3e99a470d3f8287","toSide":"bottom","label":"9 Tool Response"},
+		{"id":"1e134250cba14de7","fromNode":"36dffc93e1caa83b","fromSide":"bottom","toNode":"b9544a1a0d473dff","toSide":"bottom","label":"8 Tool Response"},
+		{"id":"931309954cb4d4ea","fromNode":"36dffc93e1caa83b","fromSide":"bottom","toNode":"3d2b973245350c62","toSide":"right","label":"Final response"},
+		{"id":"8d31ac81cabd6354","fromNode":"b9544a1a0d473dff","fromSide":"top","toNode":"36dffc93e1caa83b","toSide":"top","label":"2 List Tool Result"},
+		{"id":"378fea497d620ffd","fromNode":"f3e99a470d3f8287","fromSide":"top","toNode":"36dffc93e1caa83b","toSide":"top","label":"4 Tool Chosen"},
+		{"id":"fe5c59bbd4f3339b","fromNode":"f3e99a470d3f8287","fromSide":"bottom","toNode":"36dffc93e1caa83b","toSide":"right","label":"10 Final Response"},
+		{"id":"06aaee126f48af11","fromNode":"3d2b973245350c62","fromSide":"left","toNode":"36dffc93e1caa83b","toSide":"bottom","label":"Query"},
+		{"id":"adcc90f027fb5b41","fromNode":"b9544a1a0d473dff","fromSide":"left","toNode":"3162a9e15499c291","toSide":"right","label":"6 Execute tool"},
+		{"id":"0fec39c9e4b98e8e","fromNode":"3162a9e15499c291","fromSide":"bottom","toNode":"b9544a1a0d473dff","toSide":"bottom","label":"7 Tool Response"}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
+}

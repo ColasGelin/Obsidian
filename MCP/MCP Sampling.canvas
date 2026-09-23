@@ -1,0 +1,98 @@
+{
+	"nodes":[
+		{
+			"id":"u5e60718291a1b99",
+			"type":"text",
+			"text":"USER",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-800,
+			"y":0,
+			"width":250,
+			"height":60,
+			"color":"6"
+		},
+		{
+			"id":"a1c2d3e4f5061708",
+			"type":"text",
+			"text":"CLAUDE",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-250,
+			"y":480,
+			"width":250,
+			"height":60,
+			"color":"5"
+		},
+		{
+			"id":"b2c3d4e5f6071809",
+			"type":"text",
+			"text":"MCP CLIENT / UI",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-125,
+			"y":0,
+			"width":250,
+			"height":60,
+			"color":"1"
+		},
+		{
+			"id":"c3d4e5f607182910",
+			"type":"text",
+			"text":"MCP SERVER",
+			"styleAttributes":{"textAlign":"center"},
+			"x":925,
+			"y":0,
+			"width":250,
+			"height":60,
+			"color":"4"
+		},
+		{
+			"id":"d4e5f60718291a11",
+			"type":"text",
+			"text":"WIKIPEDIA",
+			"styleAttributes":{"textAlign":"center"},
+			"x":1050,
+			"y":-240,
+			"width":250,
+			"height":60,
+			"color":"2"
+		},
+		{
+			"id":"e5f60718291a1b22",
+			"type":"text",
+			"text":"# MCP Sampling\n\n**Sampling** lets an MCP server request an LLM completion *through the client* — servers have no direct access to a model. So that the server doesnt have to process the output itself. The server does its own work first, then asks the client to run a completion on its behalf: it sends a prompt, the client forwards it to Claude, and relays the generated text back for the server to use. ",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-240,
+			"y":-410,
+			"width":730,
+			"height":200
+		}
+	],
+	"edges":[
+		{"id":"18291a1b2c3d4e55","fromFloating":false,"fromNode":"u5e60718291a1b99","fromSide":"bottom","toNode":"b2c3d4e5f6071809","toSide":"left","label":"1 Research a topic"},
+		{"id":"1a1b2c3d4e5f6077","toFloating":false,"fromFloating":false,"fromNode":"b2c3d4e5f6071809","fromSide":"right","toNode":"c3d4e5f607182910","toSide":"left","label":"2 Tool Call Request"},
+		{"id":"1b2c3d4e5f607188","fromNode":"c3d4e5f607182910","fromSide":"right","toNode":"d4e5f60718291a11","toSide":"left","label":"3 Research..."},
+		{"id":"2c3d4e5f60718299","fromNode":"c3d4e5f607182910","fromSide":"right","toNode":"d4e5f60718291a11","toSide":"left","label":"3 Research..."},
+		{"id":"3d4e5f607182910a","fromNode":"c3d4e5f607182910","fromSide":"right","toNode":"d4e5f60718291a11","toSide":"left","fromEnd":"arrow","label":"3 Research..."},
+		{"id":"4e5f60718291a1bb","toFloating":false,"fromNode":"c3d4e5f607182910","fromSide":"left","toNode":"b2c3d4e5f6071809","toSide":"bottom","label":"4 Sampling request (generate summary)"},
+		{"id":"5f60718291a1b2cc","toFloating":false,"fromNode":"b2c3d4e5f6071809","fromSide":"bottom","toNode":"a1c2d3e4f5061708","toSide":"right","label":"5 Calls Claude with the provided prompt"},
+		{"id":"60718291a1b2c3dd","fromNode":"a1c2d3e4f5061708","fromSide":"left","toNode":"b2c3d4e5f6071809","toSide":"left","label":"6 Returns generated text"},
+		{"id":"718291a1b2c3d4ee","fromNode":"b2c3d4e5f6071809","fromSide":"bottom","toNode":"c3d4e5f607182910","toSide":"bottom","label":"7 Returns the generated text to server to process/format it"},
+		{"id":"8291a1b2c3d4e5ff","toFloating":false,"fromNode":"c3d4e5f607182910","fromSide":"top","toNode":"b2c3d4e5f6071809","toSide":"top","label":"8 Final response"},
+		{
+			"id":"291a1b2c3d4e5f00",
+			"toFloating":false,
+			"fromFloating":false,
+			"styleAttributes":{
+				"pathfindingMethod":null
+			},
+			"fromNode":"b2c3d4e5f6071809",
+			"fromSide":"left",
+			"toNode":"u5e60718291a1b99",
+			"toSide":"top",
+			"label":"9 Formatted result"
+		}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
+}

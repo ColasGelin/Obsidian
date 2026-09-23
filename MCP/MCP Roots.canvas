@@ -1,0 +1,106 @@
+{
+	"nodes":[
+		{
+			"id":"r1u5e60718291a99",
+			"type":"text",
+			"text":"USER",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-800,
+			"y":0,
+			"width":250,
+			"height":60,
+			"color":"6"
+		},
+		{
+			"id":"r2b2c3d4e5f60809",
+			"type":"text",
+			"text":"MCP CLIENT",
+			"styleAttributes":{"textAlign":"center"},
+			"x":0,
+			"y":0,
+			"width":250,
+			"height":60,
+			"color":"1"
+		},
+		{
+			"id":"r3c3d4e5f6071910",
+			"type":"text",
+			"text":"MCP SERVER",
+			"styleAttributes":{"textAlign":"center"},
+			"x":800,
+			"y":0,
+			"width":250,
+			"height":60,
+			"color":"4"
+		},
+		{
+			"id":"r4d4e5f60718291a",
+			"type":"text",
+			"text":"FILE SYSTEM",
+			"styleAttributes":{"textAlign":"center"},
+			"x":1600,
+			"y":0,
+			"width":250,
+			"height":60,
+			"color":"2"
+		},
+		{
+			"id":"r5a1c2d3e4f50617",
+			"type":"text",
+			"text":"CLAUDE",
+			"styleAttributes":{"textAlign":"center"},
+			"x":0,
+			"y":600,
+			"width":250,
+			"height":60,
+			"color":"5"
+		},
+		{
+			"id":"r6e5f60718291b22",
+			"type":"text",
+			"text":"# MCP Roots\n\nRoots are a **permission + file-discovery** mechanism: the client tells the server which directories/URIs it's allowed to touch. Without roots the server can't search the filesystem to resolve a bare filename like \"biking.mp4\" into a full path — it asks the client for approved roots, searches inside them, then calls the real tool with the resolved path.",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-800,
+			"y":-320,
+			"width":2650,
+			"height":180
+		},
+		{
+			"id":"r7f60718291b2c33",
+			"type":"text",
+			"text":"*Server, internally:*\n\nis_path_allowed() — check the resolved path falls inside an approved root. The SDK doesn't enforce this automatically, server code must validate it.",
+			"styleAttributes":{"textAlign":"center"},
+			"x":800,
+			"y":250,
+			"width":340,
+			"height":160,
+			"color":"3"
+		},
+		{
+			"id":"r80718291b2c3d44",
+			"type":"text",
+			"text":"**Why roots matter**\nUser-friendly (no full paths needed), faster search (scoped to approved dirs), and a security boundary against unauthorized file access.",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-200,
+			"y":800,
+			"width":1600,
+			"height":160,
+			"color":"3"
+		}
+	],
+	"edges":[
+		{"id":"r918291b2c3d4e55","fromNode":"r1u5e60718291a99","fromSide":"right","toNode":"r2b2c3d4e5f60809","toSide":"left","label":"1 Convert biking.mp4 to mov"},
+		{"id":"r0a1b2c3d4e5f677","fromNode":"r2b2c3d4e5f60809","fromSide":"bottom","toNode":"r5a1c2d3e4f50617","toSide":"top","label":"2 relay request — Claude picks convert_video tool"},
+		{"id":"r1b2c3d4e5f60788","fromNode":"r2b2c3d4e5f60809","fromSide":"right","toNode":"r3c3d4e5f6071910","toSide":"left","label":"3 Call Tool Request: convert_video"},
+		{"id":"r2c3d4e5f6071899","fromNode":"r3c3d4e5f6071910","fromSide":"top","toNode":"r2b2c3d4e5f60809","toSide":"top","label":"4 roots/list — what directories can I access?"},
+		{"id":"r4e5f60718291bbb","fromNode":"r2b2c3d4e5f60809","fromSide":"right","toNode":"r3c3d4e5f6071910","toSide":"bottom","label":"5 approved roots: ~/Videos, ~/Downloads"},
+		{"id":"r5f60718291bccc","fromNode":"r3c3d4e5f6071910","fromSide":"right","toNode":"r4d4e5f60718291a","toSide":"left","label":"6 read_dir() — search approved roots"},
+		{"id":"r60718291bcddd","fromNode":"r4d4e5f60718291a","fromSide":"left","toNode":"r3c3d4e5f6071910","toSide":"right","label":"7 biking.mp4 found → full path resolved"},
+		{"id":"r718291bcdee","fromNode":"r3c3d4e5f6071910","fromSide":"left","toNode":"r2b2c3d4e5f60809","toSide":"right","label":"8 Tool Response: biking.mov"},
+		{"id":"r8291bcdff","fromNode":"r2b2c3d4e5f60809","fromSide":"left","toNode":"r1u5e60718291a99","toSide":"right","label":"9 biking.mov ready"}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
+}

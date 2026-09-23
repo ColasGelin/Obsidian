@@ -1,0 +1,136 @@
+{
+	"nodes":[
+		{
+			"id":"cf1e8c14e54505f6",
+			"type":"text",
+			"text":"MCP SERVER",
+			"styleAttributes":{"textAlign":"center"},
+			"x":1700,
+			"y":0,
+			"width":250,
+			"height":60,
+			"color":"4"
+		},
+		{
+			"id":"ab4d0a658aef644a",
+			"type":"text",
+			"text":"**ReadResourceRequest**\n\n`docs://documents`",
+			"styleAttributes":{"textAlign":"center"},
+			"x":1230,
+			"y":-240,
+			"width":340,
+			"height":140,
+			"color":"2"
+		},
+		{
+			"id":"9b207167e5381c47",
+			"type":"text",
+			"text":"**ReadResourceResult**\n\nList of doc names",
+			"styleAttributes":{"textAlign":"center"},
+			"x":1230,
+			"y":220,
+			"width":340,
+			"height":140,
+			"color":"2"
+		},
+		{
+			"id":"ee11cbb19052e40b",
+			"type":"text",
+			"text":"USER",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-320,
+			"y":-30,
+			"width":250,
+			"height":60,
+			"color":"6"
+		},
+		{
+			"id":"62608e08adc29a8d",
+			"type":"text",
+			"text":"MCP CLIENT",
+			"styleAttributes":{"textAlign":"center"},
+			"x":800,
+			"y":30,
+			"width":250,
+			"height":60,
+			"color":"1"
+		},
+		{
+			"id":"8d6ab84ca2af9fcc",
+			"type":"text",
+			"text":"**Autocomplete dropdown**\n\nThe `@` menu now lists\nevery document name",
+			"styleAttributes":{"textAlign":"center"},
+			"x":110,
+			"y":290,
+			"width":340,
+			"height":140,
+			"color":"3"
+		},
+		{
+			"id":"c13367945d5d4c91",
+			"type":"text",
+			"text":"OUR CODE",
+			"styleAttributes":{"textAlign":"center"},
+			"x":155,
+			"y":-240,
+			"width":250,
+			"height":60,
+			"color":"3"
+		},
+		{
+			"id":"9e8fbe970b72f7dd",
+			"type":"text",
+			"text":"**Resources** are read-only data an MCP server exposes behind a URI like `docs://documents`. Your application fetches them directly, giving deterministic access to files, database rows, API responses, or logs — no model deciding, no side effects.",
+			"styleAttributes":{"textAlign":"center"},
+			"x":355,
+			"y":-560,
+			"width":510,
+			"height":120
+		},
+		{
+			"id":"b1b7f5ed41bee4ba",
+			"type":"text",
+			"text":"Appears when writing @ for example: \nWhat's in the @resume.pdf document",
+			"styleAttributes":{},
+			"x":920,
+			"y":-560,
+			"width":260,
+			"height":120
+		},
+		{
+			"id":"8a26dac3c7640d63",
+			"type":"text",
+			"text":"",
+			"styleAttributes":{},
+			"x":600,
+			"y":-340,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"92a55071fc7b8ffd",
+			"type":"text",
+			"text":"",
+			"styleAttributes":{},
+			"x":-60,
+			"y":-860,
+			"width":260,
+			"height":60
+		}
+	],
+	"edges":[
+		{"id":"5183b0d0120c5bbb","toFloating":false,"fromNode":"ee11cbb19052e40b","fromSide":"right","toNode":"c13367945d5d4c91","toSide":"left","label":"1 What's in the @…"},
+		{"id":"7650c71e9d229076","fromNode":"c13367945d5d4c91","fromSide":"right","toNode":"62608e08adc29a8d","toSide":"left","label":"2 I need a list of document names"},
+		{"id":"1b8bd3170838b7e9","fromNode":"62608e08adc29a8d","fromSide":"right","toNode":"ab4d0a658aef644a","toSide":"left","label":"3 ReadResourceRequest"},
+		{"id":"7ee153bc816563ca","fromNode":"ab4d0a658aef644a","fromSide":"right","toNode":"cf1e8c14e54505f6","toSide":"top","label":"4 URI: docs://documents"},
+		{"id":"366365c20c6a4342","fromNode":"cf1e8c14e54505f6","fromSide":"bottom","toNode":"9b207167e5381c47","toSide":"right","label":"5 ReadResourceResult"},
+		{"id":"1c93750984a19ca5","fromNode":"9b207167e5381c47","fromSide":"left","toNode":"62608e08adc29a8d","toSide":"right","label":"6 List of doc names"},
+		{"id":"fd79b5f002953cc4","fromNode":"62608e08adc29a8d","fromSide":"bottom","toNode":"c13367945d5d4c91","toSide":"bottom","label":"7 Here are the doc names"},
+		{"id":"d693afe0775f60f8","fromNode":"c13367945d5d4c91","fromSide":"bottom","toNode":"8d6ab84ca2af9fcc","toSide":"right","label":"8 Populate the autocomplete"},
+		{"id":"6bb7106504101545","fromNode":"8d6ab84ca2af9fcc","fromSide":"top","toNode":"ee11cbb19052e40b","toSide":"bottom","label":"9 User picks a document"}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
+}

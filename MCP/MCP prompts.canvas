@@ -1,0 +1,103 @@
+{
+	"nodes":[
+		{
+			"id":"62608e08adc29a8d",
+			"type":"text",
+			"text":"MCP CLIENT",
+			"styleAttributes":{"textAlign":"center"},
+			"x":620,
+			"y":0,
+			"width":250,
+			"height":60,
+			"color":"1"
+		},
+		{
+			"id":"ee11cbb19052e40b",
+			"type":"text",
+			"text":"USER",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-80,
+			"y":-200,
+			"width":250,
+			"height":60,
+			"color":"6"
+		},
+		{
+			"id":"dae1be85dab3650e",
+			"type":"text",
+			"text":"LLM",
+			"styleAttributes":{"textAlign":"center"},
+			"x":1040,
+			"y":-320,
+			"width":250,
+			"height":60,
+			"color":"5"
+		},
+		{
+			"id":"cf1e8c14e54505f6",
+			"type":"text",
+			"text":"MCP SERVER",
+			"styleAttributes":{"textAlign":"center"},
+			"x":1500,
+			"y":0,
+			"width":250,
+			"height":60,
+			"color":"4"
+		},
+		{"id":"98eb525e7a8b6db4","type":"file","file":"MCP/Images/Demo MCP prompt.png","x":1165,"y":-783,"width":400,"height":283},
+		{
+			"id":"1dee80c7d5ab2c1c",
+			"type":"text",
+			"text":"# MCP prompts\n\nPrompts are **pre-written message templates** a server exposes, invoked by the **user** — a slash command or a button in the client UI, never something the model picks on its own.\nThe client asks the server what prompts exist and renders them. The user chooses one and supplies arguments. The server interpolates those arguments into its template and hands back a ready-made set of user/assistant messages, which the client drops into the conversation.\nOnly at that point does the model see anything — and what it sees is a well-tested, properly structured request instead of whatever the user would have typed by hand.",
+			"styleAttributes":{"textAlign":"center"},
+			"x":370,
+			"y":-791,
+			"width":670,
+			"height":300
+		}
+	],
+	"edges":[
+		{
+			"id":"5730a0a0c19d1567",
+			"styleAttributes":{
+				"arrow":null
+			},
+			"toFloating":false,
+			"fromNode":"ee11cbb19052e40b",
+			"fromSide":"right",
+			"toNode":"62608e08adc29a8d",
+			"toSide":"left",
+			"label":"1 user runs /format plan.md"
+		},
+		{"id":"1c0c904e2c8994ed","fromNode":"62608e08adc29a8d","fromSide":"bottom","toNode":"cf1e8c14e54505f6","toSide":"bottom","label":"2 get_prompt"},
+		{"id":"a9c7d241333aa76c","toFloating":false,"fromFloating":false,"fromNode":"cf1e8c14e54505f6","fromSide":"left","toNode":"62608e08adc29a8d","toSide":"right","label":"3 user + assistant messages, filled in"},
+		{"id":"665bbf1f6cb7b1b9","fromFloating":false,"fromNode":"62608e08adc29a8d","fromSide":"top","toNode":"dae1be85dab3650e","toSide":"left","label":"4 messages sent into the conversation"},
+		{
+			"id":"7b1aa6fb9a637fca",
+			"fromFloating":false,
+			"toFloating":false,
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"fromNode":"dae1be85dab3650e",
+			"fromSide":"bottom",
+			"toNode":"cf1e8c14e54505f6",
+			"toSide":"top",
+			"label":"5 tool calls to fetch the document"
+		},
+		{"id":"40effc6658df079b","fromNode":"dae1be85dab3650e","fromSide":"top","toNode":"ee11cbb19052e40b","toSide":"top","label":"7 Formatted Result"},
+		{
+			"id":"2a5c9e0f18b7d4c3",
+			"fromFloating":false,
+			"toFloating":false,
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"fromNode":"cf1e8c14e54505f6",
+			"fromSide":"right",
+			"toNode":"dae1be85dab3650e",
+			"toSide":"right",
+			"label":"6 tool result returned"
+		}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
+}

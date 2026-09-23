@@ -1,0 +1,44 @@
+{
+	"nodes":[
+		{"id":"g-back","type":"group","x":-60,"y":1000,"width":3140,"height":900,"color":"2","label":"Backward pass"},
+		{"id":"g-fwd","type":"group","x":120,"y":-220,"width":2500,"height":1000,"color":"4","label":"Forward pass"},
+		{"id":"g-loss","type":"group","x":2800,"y":-220,"width":560,"height":1000,"color":"1","label":"Loss"},
+		{"id":"reverse","type":"text","text":"## Walk the layers in reverse\n```\nfor layer in reversed(self.layers):\n    grad_output = layer.backward(grad_output)\n```\nEach layer hands its input gradient to the\nlayer before it.","x":1980,"y":1080,"width":420,"height":240,"color":"2"},
+		{"id":"layerback","type":"text","text":"## Inside one layer's backward()\n1. Undo the activation\n   softmax -> `grad_z = grad_output`\n   sigmoid -> `grad_z = grad_output * a * (1 - a)`\n2. Gradients for this layer's parameters\n   `grad_weights = inputs.T @ grad_z / batch_size`\n   `grad_bias = sum(grad_z) / batch_size`\n3. Gradient to pass back\n   `grad_input = grad_z @ weights.T`","x":1400,"y":1080,"width":440,"height":300,"color":"2"},
+		{"id":"img-layerback","type":"file","file":"MLP/mlp-attachments/layer-backward-code.png","x":1400,"y":1420,"width":440,"height":170},
+		{"id":"gd","type":"text","text":"## Gradient descent\n`new_weight = old_weight - learning_rate * gradient`\n\nThe gradient is the slope of the loss at the\ncurrent position: it points **uphill**.\nSubtracting it moves downhill, toward lower loss.\n\n`learning_rate` controls how big each step is.","x":700,"y":1080,"width":460,"height":320,"color":"6"},
+		{"id":"img-gdcurve","type":"file","file":"MLP/mlp-attachments/gradient-descent-curve.png","x":700,"y":1440,"width":460,"height":286},
+		{"id":"img-surface","type":"file","file":"MLP/mlp-attachments/loss-surface-3d.png","x":0,"y":1080,"width":620,"height":420},
+		{"id":"img-update","type":"file","file":"MLP/mlp-attachments/update-params-code.png","x":0,"y":1540,"width":620,"height":86},
+		{"id":"gradout","type":"text","text":"## Start of backprop\nWith softmax + cross-entropy the first gradient\ncollapses to a subtraction:\n\n`grad_output = y_pred - y_true`","x":2560,"y":1080,"width":480,"height":200,"color":"1"},
+		{"id":"img-gradout","type":"file","file":"MLP/mlp-attachments/grad-output-code.png","x":2560,"y":1320,"width":477,"height":69},
+		{"id":"img-loop","type":"file","file":"MLP/mlp-attachments/backward-loop-code.png","x":1980,"y":1360,"width":419,"height":97},
+		{"id":"onehot","type":"text","text":"## One-hot encoding\nTarget labels become vectors:\n\nBenign (0) -> `[1, 0]`\nMalignant (1) -> `[0, 1]`","x":2840,"y":0,"width":480,"height":200,"color":"3"},
+		{"id":"loss","type":"text","text":"## Categorical cross-entropy\nComputed once the whole batch has predictions.\n\n`-sum(y_i * log(y_hat_i))`\n\nOutputs a single number: how wrong the model was.\n`log` makes the penalty grow sharply as the\npredicted probability moves away from the truth.\n\nExtends to any number of classes, since softmax\ngives a proper probability distribution.","x":2840,"y":240,"width":480,"height":340,"color":"1"},
+		{"id":"img-bce","type":"file","file":"MLP/mlp-attachments/binary-cross-entropy-code.png","x":2840,"y":620,"width":479,"height":129},
+		{"id":"h2","type":"text","text":"## Hidden layer 2\nNeurons 2-1, 2-2, 2-3\n\nSame two steps, but the inputs are now the\nactivations of layer 1:\n\n`z = w1*a1 + w2*a2 + w3*a3 + b`\n`a = sigmoid(z)`","x":1160,"y":0,"width":420,"height":340,"color":"4"},
+		{"id":"img-actcode","type":"file","file":"MLP/mlp-attachments/activation-code.png","x":1160,"y":400,"width":920,"height":207},
+		{"id":"softmax","type":"text","text":"## Softmax\nApplied across **all** output z values at once.\n\n`softmax(zi) = e^zi / (e^z1 + e^z2 + ... + e^zn)`\n\nEvery value becomes a probability between\n0 and 1, and they sum to 1.\n\ne.g. `[0.7, 0.3]`","x":2160,"y":0,"width":420,"height":340,"color":"5"},
+		{"id":"input","type":"text","text":"## Input layer\nOne neuron per feature.\n\n- Feature 1 (e.g. size)\n- Feature 2 (e.g. color)\n- Feature 3 (e.g. shape)\n- Feature 4\n- Feature 5\n\nData arrives `batch_size` rows at a time.","x":180,"y":0,"width":400,"height":340,"color":"6"},
+		{"id":"img-sigmoid","type":"file","file":"MLP/mlp-attachments/sigmoid-curve.png","x":660,"y":400,"width":420,"height":280},
+		{"id":"h1","type":"text","text":"## Hidden layer 1\nNeurons 1-1, 1-2, 1-3\n\n**Weighted sum**\n`z = w1*x1 + w2*x2 + w3*x3 + w4*x4 + w5*x5 + b`\n\n**Activation**\n`a = sigmoid(z) = 1 / (1 + e^(-z))`","x":660,"y":-170,"width":420,"height":340,"color":"4"},
+		{"id":"out","type":"text","text":"## Output layer\nOne neuron per possible output value.\n\nHere: **M** (malignant) and **B** (benign).\n\nEach neuron computes its own weighted sum\n`z = w1*a1 + w2*a2 + w3*a3 + b`\nover the layer-2 activations.","x":1660,"y":-170,"width":420,"height":340,"color":"5"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"input","fromSide":"right","toNode":"h1","toSide":"left"},
+		{"id":"e2","toFloating":false,"fromNode":"h1","fromSide":"right","toNode":"h2","toSide":"left","label":"activations"},
+		{"id":"e3","fromNode":"h2","fromSide":"right","toNode":"out","toSide":"left","label":"activations"},
+		{"id":"e4","fromNode":"out","fromSide":"right","toNode":"softmax","toSide":"left","label":"raw z values"},
+		{"id":"e5","fromNode":"softmax","fromSide":"right","toNode":"loss","toSide":"left","label":"prediction"},
+		{"id":"e6","fromNode":"onehot","fromSide":"bottom","toNode":"loss","toSide":"top","label":"true result"},
+		{"id":"e7","fromNode":"loss","fromSide":"bottom","toNode":"gradout","toSide":"top"},
+		{"id":"e8","fromNode":"gradout","fromSide":"left","toNode":"reverse","toSide":"right"},
+		{"id":"e9","fromNode":"reverse","fromSide":"left","toNode":"layerback","toSide":"right"},
+		{"id":"e10","fromNode":"layerback","fromSide":"left","toNode":"gd","toSide":"right","label":"grad_weights / grad_bias"},
+		{"id":"e11","fromNode":"gd","fromSide":"top","toNode":"input","toSide":"bottom","label":"updated weights, next batch"}
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
+}
